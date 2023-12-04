@@ -1,8 +1,3 @@
-import java.io.File
-import kotlin.math.max
-import kotlin.math.min
-import kotlin.system.measureTimeMillis
-
 fun main() {
     fun extractNumber(input: String, pos: Int): List<Int> {
         var startNumber: Int = pos;
@@ -119,9 +114,11 @@ private fun Char.isSymbol(): Boolean {
 private fun String.hasSymbolAt(index: Int): Boolean {
     return (getOrNull(index) ?: '.').isSymbol()
 }
+
 private fun String.hasDigitAt(index: Int): Boolean {
     return (getOrNull(index) ?: '.').isDigit()
 }
+
 private fun String.hasStarAt(index: Int): Boolean {
-    return (getOrNull(index) ?: '.')=='*'
+    return (getOrNull(index) ?: '.') == '*'
 }

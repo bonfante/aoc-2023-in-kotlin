@@ -1,19 +1,17 @@
-import java.io.File
 import kotlin.math.max
-import kotlin.system.measureTimeMillis
 
 fun main() {
     fun part1(input: List<String>): Int {
         return input.map {
             var (game, dices) = it.removePrefix("Game ").split(':', limit = 2)
             var gameSets = dices.split(';')
-                    .map {
-                        it.split(',')
-                                .map {
-                                    it.trim().split(' ')
-                                            .map { it.trim() }
-                                }
-                    }
+                .map {
+                    it.split(',')
+                        .map {
+                            it.trim().split(' ')
+                                .map { it.trim() }
+                        }
+                }
 
             val impossible = gameSets.any {
                 it.any {
@@ -37,13 +35,13 @@ fun main() {
         return input.map {
             var (game, dices) = it.removePrefix("Game ").split(':', limit = 2)
             var gameSets = dices.split(';')
-                    .map {
-                        it.split(',')
-                                .map {
-                                    it.trim().split(' ')
-                                            .map { it.trim() }
-                                }
-                    }
+                .map {
+                    it.split(',')
+                        .map {
+                            it.trim().split(' ')
+                                .map { it.trim() }
+                        }
+                }
 
             var green = 0;
             var blue = 0;
@@ -57,12 +55,11 @@ fun main() {
                     }
                 }
             }
-            green*blue*red
+            green * blue * red
         }.sum()
     }
 
     check(part1(readInput("day02input")) == 2278)
     println(part2(readInput("day02input")))
     check(part2(readInput("day02input")) == 67953)
-//    check(part2(readInput("day01input")) == 54770)
 }

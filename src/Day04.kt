@@ -1,8 +1,3 @@
-import java.io.File
-import kotlin.math.max
-import kotlin.math.min
-import kotlin.system.measureTimeMillis
-
 fun main() {
 
     fun part1(input: List<String>): Int {

@@ -1,7 +1,21 @@
-import java.io.File
-import kotlin.system.measureTimeMillis
-
 fun main() {
+    val mapDigits = { match: String ->
+        when (match) {
+            "one", "1" -> "1"
+            "two", "2" -> "2"
+            "three", "3" -> "3"
+            "four", "4" -> "4"
+            "five", "5" -> "5"
+            "six", "6" -> "6"
+            "seven", "7" -> "7"
+            "eight", "8" -> "8"
+            "nine", "9" -> "9"
+            else -> {
+                throw Exception("")
+            }
+        }
+    }
+
     fun part1(input: List<String>): Int {
         var acc = 0;
         input.forEach() {
@@ -26,22 +40,6 @@ fun main() {
 
     fun part2(input: List<String>): Int {
         var acc = 0;
-        var mapDigits = { match: String ->
-            when (match) {
-                "one", "1" -> "1"
-                "two", "2" -> "2"
-                "three", "3" -> "3"
-                "four", "4" -> "4"
-                "five", "5" -> "5"
-                "six", "6" -> "6"
-                "seven", "7" -> "7"
-                "eight", "8" -> "8"
-                "nine", "9" -> "9"
-                else -> {
-                    throw Exception("")
-                }
-            }
-        }
         var pattern = "(?=(one|two|three|four|five|six|seven|eight|nine|\\d))".toRegex() ?: throw Exception("")
         input.forEach() {
             val matchResult = pattern.findAll(it)
@@ -56,35 +54,18 @@ fun main() {
         var acc = 0;
         input.forEach() {
             val numbersList = listOf(
-                    "one", "1",
-                    "two", "2",
-                    "three", "3",
-                    "four", "4",
-                    "five", "5",
-                    "six", "6",
-                    "seven", "7",
-                    "eight", "8",
-                    "nine", "9",
+                "one", "1",
+                "two", "2",
+                "three", "3",
+                "four", "4",
+                "five", "5",
+                "six", "6",
+                "seven", "7",
+                "eight", "8",
+                "nine", "9",
             )
             val first = it.findAnyOf(numbersList)?.second ?: throw Exception()
             val last = it.findLastAnyOf(numbersList)?.second ?: first
-
-            val mapDigits = { match: String ->
-                when (match) {
-                    "one", "1" -> "1"
-                    "two", "2" -> "2"
-                    "three", "3" -> "3"
-                    "four", "4" -> "4"
-                    "five", "5" -> "5"
-                    "six", "6" -> "6"
-                    "seven", "7" -> "7"
-                    "eight", "8" -> "8"
-                    "nine", "9" -> "9"
-                    else -> {
-                        throw Exception("")
-                    }
-                }
-            }
             acc += "${mapDigits(first)}${mapDigits(last)}".toInt()
         }
         return acc
