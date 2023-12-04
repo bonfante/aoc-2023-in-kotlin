@@ -1,4 +1,5 @@
 import java.io.File
+import kotlin.system.measureTimeMillis
 
 fun main() {
     fun part1(input: List<String>): Int {
@@ -51,6 +52,45 @@ fun main() {
         return acc
     }
 
+    fun part2NoRegex(input: List<String>): Int {
+        var acc = 0;
+        input.forEach() {
+            val numbersList = listOf(
+                    "one", "1",
+                    "two", "2",
+                    "three", "3",
+                    "four", "4",
+                    "five", "5",
+                    "six", "6",
+                    "seven", "7",
+                    "eight", "8",
+                    "nine", "9",
+            )
+            val first = it.findAnyOf(numbersList)?.second ?: throw Exception()
+            val last = it.findLastAnyOf(numbersList)?.second ?: first
+
+            val mapDigits = { match: String ->
+                when (match) {
+                    "one", "1" -> "1"
+                    "two", "2" -> "2"
+                    "three", "3" -> "3"
+                    "four", "4" -> "4"
+                    "five", "5" -> "5"
+                    "six", "6" -> "6"
+                    "seven", "7" -> "7"
+                    "eight", "8" -> "8"
+                    "nine", "9" -> "9"
+                    else -> {
+                        throw Exception("")
+                    }
+                }
+            }
+            acc += "${mapDigits(first)}${mapDigits(last)}".toInt()
+        }
+        return acc
+    }
+
     check(part1(readInput("day01input")) == 54630)
     check(part2(readInput("day01input")) == 54770)
+    check(part2NoRegex(readInput("day01input")) == 54770)
 }
