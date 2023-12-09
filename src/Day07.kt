@@ -15,31 +15,48 @@ fun main() {
                 .sorted()
                 .toMutableList()
 
-            val result = when (groups) {
+            var result = when (groups) {
                 //Five of a kind
                 listOf(5) -> 6
                 //Four of a kind
-                listOf(4) -> 5 + jokers
+                listOf(4) -> 5
                 //Full house
                 listOf(2, 3) -> 4
                 //Three of a kind
-                listOf(3) -> when (jokers) {
-                    0 -> 3
-                    else -> 4 + jokers
-                }
+                listOf(3) -> 3
                 //Two pair
-                listOf(2, 2) -> 2 + jokers
+                listOf(2, 2) -> 2
                 //One pair
-                listOf(2) -> when (jokers) {
-                    2 -> 5
-                    1 -> 3
-                    else -> 1
-                }
+                listOf(2) -> 1
                 //High card
-                emptyList<Int>() -> 0 + jokers
+                emptyList<Int>() -> 0
                 else -> throw Exception();
             }
+            if (jokers > 0) {
+                result = when (result) {
+                    5 -> 6
+                    3 -> 4 + jokers
+                    2 -> 4
+                    1 -> when (jokers) {
+                        1 -> 3
+                        2 -> 5
+                        3 -> 6
+                        else -> throw Exception()
+                    }
+                    0 -> when (jokers) {
+                        1 -> 1
+                        2 -> 3
+                        3 -> 5
+                        4,5 -> 6
+                        else -> throw Exception()
+                    }
+                    else -> result
 
+                }
+
+                kotlin.io.println("$hand($result)")
+
+            }
             return result
         }
 
